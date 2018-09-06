@@ -43,8 +43,6 @@ class MonodepthDataloader(object):
             right_image_path = tf.string_join([self.data_path, split_line[1]])
             left_image_o  = self.read_image(left_image_path)
             right_image_o = self.read_image(right_image_path)
-            print(left_image_o.shape)
-            print(left_image_o.shape)
 
         if mode == 'train':
             # randomly flip images
@@ -62,6 +60,8 @@ class MonodepthDataloader(object):
             # capacity = min_after_dequeue + (num_threads + a small safety margin) * batch_size
             min_after_dequeue = 2048
             capacity = min_after_dequeue + 4 * params.batch_size
+            print(left_image.shape)
+            print(left_image.shape)
             self.left_image_batch, self.right_image_batch = tf.train.shuffle_batch([left_image, right_image],
                         params.batch_size, capacity, min_after_dequeue, params.num_threads)
 
